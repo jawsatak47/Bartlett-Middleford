@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specimen Plates — Field Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0d0b;
+    --panel: #0f1310;
+    --panel-line: #1c231d;
+    --grid: rgba(45, 221, 124, 0.07);
+    --text: #dfe6df;
+    --text-dim: #7e8b80;
+    --green: #2add7c;
+    --green-dim: #1c8a4f;
+    --red: #ff5c5c;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --sans: "Space Grotesk", Arial, sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 42px 42px;
+    color: var(--text);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  /* ---------- Ticker tape ---------- */
+  .ticker{
+    background: var(--panel);
+    border-bottom: 1px solid var(--panel-line);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.6rem 0;
+  }
+
+  .ticker-track{
+    display: inline-flex;
+    gap: 3rem;
+    padding-left: 100%;
+    animation: scroll-left 32s linear infinite;
+  }
+
+  @keyframes scroll-left{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-100%); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation: none; padding-left: 1.5rem; }
+  }
+
+  .ticker-item{
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+  }
+
+  .ticker-item .sym{ color: var(--green); font-weight: 500; }
+
+  /* ---------- Header ---------- */
+  header{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem 3rem;
+  }
+
+  .kicker{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    margin: 0 0 1rem;
+  }
+
+  header h1{
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    margin: 0 0 0.9rem;
+    letter-spacing: -0.01em;
+  }
+
+  header p{
+    margin: 0;
+    max-width: 50ch;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+
+  /* ---------- Gallery ---------- */
+  main{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .plate{
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+  }
+
+  .plate-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--panel-line);
+    font-family: var(--mono);
+  }
+
+  .plate-bar .sym{
+    color: var(--green);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .plate-bar .plate-no{
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+
+  .plate-bar svg{ display: block; }
+
+  .mount{
+    padding: 1.1rem;
+    position: relative;
+  }
+
+  .plate img{
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: zoom-in;
+    filter: saturate(1.03);
+  }
+
+  .plate-label{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 0 1.1rem 1.4rem;
+  }
+
+  .plate-label .id .title{
+    display: block;
+    font-family: var(--sans);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .plate-label .id .tag{
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.35rem;
+  }
+
+  .plate-label .info{
+    border-left: 1px solid var(--panel-line);
+    padding-left: 2rem;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--text-dim);
+    outline: none;
+  }
+
+  .plate-label .info:empty::before{
+    content: attr(data-placeholder);
+    font-style: italic;
+    opacity: 0.7;
+  }
+
+  .plate-label .info:focus{ color: var(--text); }
+
+  @media (max-width: 680px){
+    .plate-label{ grid-template-columns: 1fr; gap: 0.75rem; }
+    .plate-label .info{
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid var(--panel-line);
+      padding-top: 0.75rem;
+    }
+  }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 8, 6, 0.96);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 4vh 4vw;
+    z-index: 100;
+  }
+
+  .lightbox.open{ display: flex; }
+
+  .lightbox img{
+    max-width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border: 1px solid var(--panel-line);
+  }
+
+  .lightbox .cap{
+    color: var(--text);
+    font-family: var(--mono);
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .lightbox .cap .sym{ color: var(--green); }
+
+  .lightbox .close{
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    background: none;
+    border: 1px solid var(--green-dim);
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+  }
+
+  .lightbox .close:hover{ background: rgba(42,221,124,0.08); }
+
+  :focus-visible{
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<header>
+  <p class="kicker">FIELD INDEX / MEDFORD, OR</p>
+  <h1>Specimen Plates</h1>
+  <p>Four field plates from the Medford series — click any image to view it larger.</p>
+</header>
+
+<main id="gallery"></main>
+
+<div class="lightbox" id="lightbox">
+  <button class="close" id="lightboxClose">Close</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="cap" id="lightboxCap"></div>
+</div>
+
+<script>
+  /* ------------------------------------------------------------------
+     EDIT YOUR PIECES HERE.
+     - src: path/filename of your image (put the files next to this
+       HTML file, or point to a folder, e.g. "images/plate-01.png")
+     - sym: a short ticker-style code for the piece
+     - title: the piece's full name
+     - info: your notes, story, medium, dimensions, etc. Leave the
+       string empty ("") to show the italic placeholder prompt instead,
+       or click directly into the text on the page to type notes there.
+  ------------------------------------------------------------------ */
+  const PLATES = [
+    {
+      src: "images/plate-01.png",
+      alt: "Meadowlark plate, teal ground, with Earth and two engraved portraits",
+      sym: "MDLK",
+      title: "Meadowlark",
+      info: ""
+    },
+    {
+      src: "images/plate-02.png",
+      alt: "Osprey and salmon plate, blue ground, Earth / Wind-Water",
+      sym: "OSPR",
+      title: "Osprey & Salmon",
+      info: ""
+    },
+    {
+      src: "images/plate-03.png",
+      alt: "Acorn woodpecker, swallowtail, and morel plate, pink and lime ground",
+      sym: "SWLT",
+      title: "Swallowtail",
+      info: ""
+    },
+    {
+      src: "images/plate-04.png",
+      alt: "Grey fox and spotted frog plate, sage ground, Medford OR",
+      sym: "GFOX",
+      title: "Grey Fox",
+      info: ""
+    }
+  ];
+
+  const romanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+
+  // Ticker tape
+  const tickerTrack = document.getElementById("tickerTrack");
+  const tickerHTML = PLATES.map(p =>
+    `<span class="ticker-item"><span class="sym">${p.sym}</span> · ${p.title} · PLATE ${romanNumerals[PLATES.indexOf(p)]}</span>`
+  ).join("");
+  tickerTrack.innerHTML = tickerHTML + tickerHTML; // duplicate for seamless loop
+
+  // Small decorative sparkline (purely visual, not real data)
+  function sparkline(seed){
+    const pts = [];
+    let y = 10;
+    for (let x = 0; x <= 60; x += 10){
+      y += ((seed * (x + 1)) % 7) - 3;
+      y = Math.max(2, Math.min(18, y));
+      pts.push(`${x},${y}`);
+    }
+    return `<svg width="64" height="20" viewBox="0 0 60 20"><polyline points="${pts.join(' ')}" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+  }
+
+  const gallery = document.getElementById("gallery");
+
+  PLATES.forEach((plate, i) => {
+    const section = document.createElement("section");
+    section.className = "plate";
+    section.innerHTML = `
+      <div class="plate-bar">
+        <span class="sym">${plate.sym}</span>
+        ${sparkline(i + 3)}
+        <span class="plate-no">PLATE ${romanNumerals[i] || i + 1}</span>
+      </div>
+      <div class="mount">
+        <img src="${plate.src}" alt="${plate.alt}" data-index="${i}">
+      </div>
+      <div class="plate-label">
+        <span class="id">
+          <span class="title">${plate.title}</span>
+          <span class="tag">${plate.sym} · PLATE ${romanNumerals[i] || i + 1}</span>
+        </span>
+        <div class="info" contenteditable="true" data-placeholder="Add notes on this piece — medium, size, where it's showing…">${plate.info}</div>
+      </div>
+    `;
+    gallery.appendChild(section);
+  });
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxCap = document.getElementById("lightboxCap");
+
+  gallery.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") {
+      const idx = e.target.dataset.index;
+      lightboxImg.src = PLATES[idx].src;
+      lightboxImg.alt = PLATES[idx].alt;
+      lightboxCap.innerHTML = `<span class="sym">${PLATES[idx].sym}</span> · ${PLATES[idx].title}`;
+      lightbox.classList.add("open");
+    }
+  });
+
+  function closeLightbox(){
+    lightbox.classList.remove("open");
+    lightboxImg.src = "";
+  }
+
+  document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
+</script>
+
+</body>
+</html>
