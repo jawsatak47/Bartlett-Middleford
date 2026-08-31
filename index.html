@@ -393,6 +393,46 @@
     if (e.key === "Escape") closeLightbox();
   });
 </script>
+  <style>
+  footer {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+    border-top: 1px solid var(--panel-line);
+  }
+
+  .footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--green);
+  }
+</style>
+
+<footer>
+  <nav class="footer-nav">
+    <a href="https://jawsatak47.github.io/Infographics/" class="footer-link">Jawsatak Animal Infographics</a>
+    <a href="https://jawsatak47.github.io/jawscommercial/" class="footer-link">Jawsatak</a>
+    <a href="https://jawsatak47.github.io/MonsTober-stage1/" class="footer-link">CanvasWars</a>
+    <a href="https://jawsatak47.myspreadshop.com/" class="footer-link">Merch</a>
+    <a href="https://square.link/u/sqPIqnMN" class="footer-link">Donate</a>
+  </nav>
+</footer>
 
 </body>
 </html>
