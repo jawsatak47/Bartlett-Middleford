@@ -109,7 +109,7 @@
   main{
     max-width: 1120px;
     margin: 0 auto;
-    padding: 0 1.5rem 4rem;
+    padding: 0 1.5rem 6rem;
     display: flex;
     flex-direction: column;
     gap: 3.5rem;
@@ -205,148 +205,6 @@
     }
   }
 
-  /* ---------- Assets Section / Archive Vault ---------- */
-  .vault-section{
-    max-width: 1120px;
-    margin: 0 auto 5rem;
-    padding: 0 1.5rem;
-  }
-
-  .vault-container {
-    background: var(--panel);
-    border: 1px solid var(--panel-line);
-    padding: 2rem;
-  }
-
-  .vault-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-bottom: 1px solid var(--panel-line);
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .vault-title {
-    font-family: var(--mono);
-    font-size: 1.1rem;
-    color: var(--green);
-    letter-spacing: 0.04em;
-    margin: 0;
-  }
-
-  .vault-subtitle {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    margin: 0;
-  }
-
-  .upload-dropzone {
-    border: 2px dashed var(--panel-line);
-    padding: 2rem;
-    text-align: center;
-    background: rgba(15, 19, 16, 0.5);
-    cursor: pointer;
-    transition: border-color 0.2s ease, background 0.2s ease;
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-
-  .upload-dropzone:hover, .upload-dropzone.dragover {
-    border-color: var(--green-dim);
-    background: rgba(42, 221, 124, 0.02);
-  }
-
-  .upload-dropzone input[type="file"] {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-  }
-
-  .upload-prompt {
-    font-family: var(--mono);
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-  }
-
-  .upload-prompt span {
-    color: var(--green);
-    text-decoration: underline;
-  }
-
-  .assets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1rem;
-  }
-
-  .asset-card {
-    background: var(--bg);
-    border: 1px solid var(--panel-line);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 0.8rem;
-  }
-
-  .asset-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .asset-name {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    color: var(--text);
-    word-break: break-all;
-    font-weight: 500;
-  }
-
-  .asset-meta {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--text-dim);
-  }
-
-  .asset-actions {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-  }
-
-  .asset-btn {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    background: none;
-    border: 1px solid var(--panel-line);
-    color: var(--text-dim);
-    padding: 0.3rem 0.6rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .asset-btn:hover {
-    border-color: var(--green-dim);
-    color: var(--green);
-    background: rgba(42,221,124,0.05);
-  }
-
-  .asset-btn.delete:hover {
-    border-color: var(--red);
-    color: var(--red);
-    background: rgba(255,92,92,0.05);
-  }
-
   /* ---------- Lightbox ---------- */
   .lightbox{
     position: fixed;
@@ -409,32 +267,10 @@
 <header>
   <p class="kicker">FIELD INDEX / MEDFORD, OR</p>
   <h1>Specimen Plates</h1>
-  <p>Four field plates from the Medford series — Throughout the series, subtle design elements are inspired by the intricate detailing found in world currency — particularly the layering, line work, and symbolic framing devices. A recurring pear motif serves as a “window” within each panel, honoring the region’s agricultural heritage and acting as a unifying visual anchor across the composition. — click any image to view it larger.</p>
+  <p>Four field plates from the Medford series -Throughout the series, subtle design elements are inspired by the intricate detailing found in world currency — particularly the layering, line work, and symbolic framing devices. A recurring pear motif serves as a “window” within each panel, honoring the region’s agricultural heritage and acting as a unifying visual anchor across the composition.— click any image to view it larger.</p>
 </header>
 
 <main id="gallery"></main>
-
-<!-- Progress & Process Assets Vault -->
-<section class="vault-section">
-  <div class="vault-container">
-    <div class="vault-header">
-      <h2 class="vault-title">// PROGRESS & PROCESS ASSETS</h2>
-      <p class="vault-subtitle">Upload supporting documentation, sketches, PDFs, or PNGs</p>
-    </div>
-    
-    <div class="upload-dropzone" id="dropZone">
-      <input type="file" id="fileInput" multiple accept=".png,.jpg,.jpeg,.pdf,.webp,.txt,.zip">
-      <div class="upload-prompt">
-        Drag & drop process files here, or <span>browse files</span><br>
-        <small style="opacity: 0.6; font-size: 0.75rem;">Supports PNG, JPG, PDF, WebP, etc.</small>
-      </div>
-    </div>
-
-    <div class="assets-grid" id="assetsGrid">
-      <!-- Uploaded files will appear here dynamically -->
-    </div>
-  </div>
-</section>
 
 <div class="lightbox" id="lightbox">
   <button class="close" id="lightboxClose">Close</button>
@@ -445,6 +281,13 @@
 <script>
   /* ------------------------------------------------------------------
      EDIT YOUR PIECES HERE.
+     - src: path/filename of your image (put the files next to this
+       HTML file, or point to a folder, e.g. "images/plate-01.png")
+     - sym: a short ticker-style code for the piece
+     - title: the piece's full name
+     - info: your notes, story, medium, dimensions, etc. Leave the
+       string empty ("") to show the italic placeholder prompt instead,
+       or click directly into the text on the page to type notes there.
   ------------------------------------------------------------------ */
   const PLATES = [
     {
@@ -484,9 +327,9 @@
   const tickerHTML = PLATES.map(p =>
     `<span class="ticker-item"><span class="sym">${p.sym}</span> · ${p.title} · PLATE ${romanNumerals[PLATES.indexOf(p)]}</span>`
   ).join("");
-  tickerTrack.innerHTML = tickerHTML + tickerHTML;
+  tickerTrack.innerHTML = tickerHTML + tickerHTML; // duplicate for seamless loop
 
-  // Small decorative sparkline
+  // Small decorative sparkline (purely visual, not real data)
   function sparkline(seed){
     const pts = [];
     let y = 10;
@@ -523,7 +366,6 @@
     gallery.appendChild(section);
   });
 
-  // Lightbox functionality
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
   const lightboxCap = document.getElementById("lightboxCap");
@@ -550,61 +392,8 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeLightbox();
   });
-
-  // --- Process Files Asset Vault Logic ---
-  const fileInput = document.getElementById("fileInput");
-  const assetsGrid = document.getElementById("assetsGrid");
-  let storedAssets = [];
-
-  function renderAssets() {
-    if (storedAssets.length === 0) {
-      assetsGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim); padding: 1rem;">No files uploaded yet. Add progress notes, PDFs, or design layers above.</div>`;
-      return;
-    }
-
-    assetsGrid.innerHTML = storedAssets.map((asset, index) => `
-      <div class="asset-card">
-        <div class="asset-info">
-          <span class="asset-name">${asset.name}</span>
-          <span class="asset-meta">${(asset.size / 1024).toFixed(1)} KB · ${asset.type || 'Unknown format'}</span>
-        </div>
-        <div class="asset-actions">
-          <a href="${asset.url}" target="_blank" class="asset-btn">Open</a>
-          <button class="asset-btn delete" onclick="removeAsset(${index})">Remove</button>
-        </div>
-      </div>
-    `).join("");
-  }
-
-  function handleFiles(files) {
-    Array.from(files).forEach(file => {
-      const url = URL.createObjectURL(file);
-      storedAssets.push({
-        name: file.name,
-        size: file.size,
-        type: file.type || file.name.split('.').pop().toUpperCase(),
-        url: url
-      });
-    });
-    renderAssets();
-  }
-
-  fileInput.addEventListener("change", (e) => {
-    handleFiles(e.target.files);
-    fileInput.value = ""; // reset input
-  });
-
-  window.removeAsset = function(index) {
-    URL.revokeObjectURL(storedAssets[index].url);
-    storedAssets.splice(index, 1);
-    renderAssets();
-  }
-
-  // Initial call
-  renderAssets();
 </script>
-
-<style>
+  <style>
   footer {
     max-width: 1120px;
     margin: 0 auto;
@@ -646,4 +435,4 @@
 </footer>
 
 </body>
-</html>
+</html> 
