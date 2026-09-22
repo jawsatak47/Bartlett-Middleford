@@ -109,7 +109,7 @@
   main{
     max-width: 1120px;
     margin: 0 auto;
-    padding: 0 1.5rem 6rem;
+    padding: 0 1.5rem 4rem;
     display: flex;
     flex-direction: column;
     gap: 3.5rem;
@@ -205,6 +205,86 @@
     }
   }
 
+  /* ---------- Process Archive Section ---------- */
+  .archive-section {
+    max-width: 1120px;
+    margin: 0 auto 5rem;
+    padding: 0 1.5rem;
+  }
+
+  .archive-box {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    padding: 2rem;
+  }
+
+  .archive-header {
+    border-bottom: 1px solid var(--panel-line);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .archive-title {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    color: var(--green);
+    letter-spacing: 0.04em;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .archive-desc {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin: 0;
+    font-family: var(--mono);
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .archive-card {
+    background: var(--bg);
+    border: 1px solid var(--panel-line);
+    padding: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .archive-card:hover {
+    border-color: var(--green-dim);
+    background: rgba(42, 221, 124, 0.02);
+  }
+
+  .archive-card-title {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+    margin: 0 0 0.2rem 0;
+  }
+
+  .archive-card-meta {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .archive-link-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--green);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
   /* ---------- Lightbox ---------- */
   .lightbox{
     position: fixed;
@@ -272,6 +352,93 @@
 
 <main id="gallery"></main>
 
+<!-- Progress & Process Files Section (Edit links directly below) -->
+<section class="archive-section">
+  <div class="archive-box">
+    <div class="archive-header">
+      <h2 class="archive-title">// PROGRESS & PROCESS ARCHIVE</h2>
+      <p class="archive-desc">Reference documentation, PNG sketches, and PDF process logs.</p>
+    </div>
+    
+    <div class="archive-grid">
+      <!-- Item 1 -->
+      <a href="A 3 blank walls.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 1</h3>
+          <span class="archive-card-meta">PDF Document · Full breakdown</span>
+        </div>
+        <span class="archive-link-label">Access File →</span>
+      </a>
+
+      <!-- Item 2 -->
+      <a href="B 799169918_1791221138861513_8185398901010002073_n.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 2</h3>
+          <span class="archive-card-meta">PNG Image · High-res reference</span>
+        </div>
+        <span class="archive-link-label">View Image →</span>
+      </a>
+
+      <a href="C 818505251_1669877547831815_7581993735544680808_n.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 3</h3>
+          <span class="archive-card-meta">PNG Image · High-res reference</span>
+        </div>
+        <span class="archive-link-label">View Image →</span>
+      </a>
+
+      <a href="D 813280669_2306457700185823_8130103116750685803_n.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 4</h3>
+          <span class="archive-card-meta">PNG Image · High-res reference</span>
+        </div>
+        <span class="archive-link-label">View Image →</span>
+      </a>
+
+      <a href="F 813176895_922908187169395_8744542675075291492_n.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 5</h3>
+          <span class="archive-card-meta">PNG Image · High-res reference</span>
+        </div>
+        <span class="archive-link-label">View Image →</span>
+      </a>
+
+      <a href="G 813948644_1131176362671075_3698351054368736847_n.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 6</h3>
+          <span class="archive-card-meta">PNG Image · High-res reference</span>
+        </div>
+        <span class="archive-link-label">View Image →</span>
+      </a>
+
+      <a href="H 812696669_1560622032033518_3632718162715357873_n.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 7</h3>
+          <span class="archive-card-meta">PNG Image · High-res reference</span>
+        </div>
+        <span class="archive-link-label">View Image →</span>
+      </a>
+
+      <a href="I 815137370_1070286592403714_2548453870574670230_n.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 8</h3>
+          <span class="archive-card-meta">PNG Image · High-res reference</span>
+        </div>
+        <span class="archive-link-label">View Image →</span>
+      </a>
+
+      <!-- Item 3 (Add more by copying the block above) -->
+      <a href="J 813371837_958789256592601_1719087160846469455_n.jpg" target="_blank" class="archive-card">
+        <div>
+          <h3 class="archive-card-title">Medford Series Process 9</h3>
+          <span class="archive-card-meta">PNG Image · Gradient & ground maps</span>
+        </div>
+        <span class="archive-link-label">View Image →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <div class="lightbox" id="lightbox">
   <button class="close" id="lightboxClose">Close</button>
   <img id="lightboxImg" src="" alt="">
@@ -281,13 +448,6 @@
 <script>
   /* ------------------------------------------------------------------
      EDIT YOUR PIECES HERE.
-     - src: path/filename of your image (put the files next to this
-       HTML file, or point to a folder, e.g. "images/plate-01.png")
-     - sym: a short ticker-style code for the piece
-     - title: the piece's full name
-     - info: your notes, story, medium, dimensions, etc. Leave the
-       string empty ("") to show the italic placeholder prompt instead,
-       or click directly into the text on the page to type notes there.
   ------------------------------------------------------------------ */
   const PLATES = [
     {
@@ -327,9 +487,9 @@
   const tickerHTML = PLATES.map(p =>
     `<span class="ticker-item"><span class="sym">${p.sym}</span> · ${p.title} · PLATE ${romanNumerals[PLATES.indexOf(p)]}</span>`
   ).join("");
-  tickerTrack.innerHTML = tickerHTML + tickerHTML; // duplicate for seamless loop
+  tickerTrack.innerHTML = tickerHTML + tickerHTML;
 
-  // Small decorative sparkline (purely visual, not real data)
+  // Small decorative sparkline
   function sparkline(seed){
     const pts = [];
     let y = 10;
@@ -393,7 +553,8 @@
     if (e.key === "Escape") closeLightbox();
   });
 </script>
-  <style>
+
+<style>
   footer {
     max-width: 1120px;
     margin: 0 auto;
@@ -435,4 +596,4 @@
 </footer>
 
 </body>
-</html> 
+</html>
